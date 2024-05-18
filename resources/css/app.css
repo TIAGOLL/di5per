@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
+<<<<<<< HEAD
+=======
+@tailwind utilities;@tailwind base;
+@tailwind components;
+>>>>>>> 862d782b506faa2bb11642961fa27c893ca5c968
 @tailwind utilities;
