@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('cofres',function(Blueprint $table){
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->float('totalGuardado',2);
-            $table->float('maiorAporte',2);
-            $table->float('meta',2);
-            $table->float('rendimento',2);
+        Schema::create('moedas', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('descricao', 100);
+            $table->string('simbolo', 5);
+            $table->string('sigla', 5);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cofres');
+        Schema::dropIfExists('moedas');
     }
 };

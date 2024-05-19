@@ -10,7 +10,7 @@ class movimentacoes extends Model
     use HasFactory;
 
     protected $fillable = [
-        'usuarios_id',
+        'user_id',
         'data',
         'tipoMovimentacao',
         'tipoTransacao'

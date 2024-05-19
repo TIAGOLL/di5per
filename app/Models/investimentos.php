@@ -10,7 +10,7 @@ class investimentos extends Model
     use HasFactory;
 
     protected $fillable = [
-        'usuarios_id',
+        'user_id',
         'totalInvestimento',
         'data',
         'rendimento',

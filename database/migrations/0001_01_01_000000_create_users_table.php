@@ -11,10 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        /*Schema::create('users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->integer('cpf')->unique();
+            $table->decimal('total_conta');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
@@ -34,7 +36,7 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
-        });*/
+        });
     }
 
     /**

@@ -10,7 +10,7 @@ class cofres extends Model
     use HasFactory;
 
     protected $fillable = [
-        'usuarios_id',
+        'user_id',
         'totalGuardado',
         'maiorAporte',
         'meta',

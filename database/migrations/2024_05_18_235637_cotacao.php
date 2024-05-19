@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuarios',function (Blueprint $table){
-            $table->id();
-            $table->string('nome');
-            $table->integer('cpf')->unique();
-            $table->decimal('total_conta');
+        Schema::create('cotacaos', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->decimal('valor', 12, 6);
+            $table->dateTime('dataHora');
+            $table->string('descicao', 100);
             $table->timestamps();
-            $table->foreignId('endereco_id')->constrained()->onDelete('cascade');
-            
+            $table->foreignId('moeda_id');
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('cotacaos');
     }
 };

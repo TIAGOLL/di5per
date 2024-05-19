@@ -5,16 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class autanticacoes extends Model
+class Moeda extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'token',
-        'expiraEm',
-        'atualizadoEm',
-        'login',
-        'senha',
-        'usuarios_id'
+        'descricao',
+        'sigla',
+        'simbolo'
     ];
 }
