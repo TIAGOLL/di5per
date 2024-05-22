@@ -3,39 +3,41 @@
 namespace App\Console\Commands;
 
 use App\Enum\CotacaoTipo;
+use App\Models\Cotacao;
+use App\Models\Moeda;
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
-use App\Models\Moeda;
-use App\Models\Cotacao;
-use Carbon\Carbon;
 use InvalidArgumentException;
 
 use function Laravel\Prompts\error;
 use function Laravel\Prompts\warning;
 
-class AtualizaCotacao extends Command
+class MoedaHistorico extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'moeda:atualizar';
+    protected $signature = 'moeda:historico {days}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Extrai historico da moeda';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $dataInicial = date("m-d-Y");
-        $dataFinal = date("m-d-Y");
+        $dias = $this->argument("days");
+
+        $dataInicial = Carbon::now()->subDays($dias)->format("m-d-Y");
+        $dataFinal = Carbon::now()->subDay()->format("m-d-Y");
         $moedas = Moeda::All();
 
         if (is_null($moedas)) {
@@ -59,11 +61,11 @@ class AtualizaCotacao extends Command
             }
 
             foreach ($data['value'] as $value) {
-                info($value['dataHoraCotacao']);
+                info($value['cotacaoCompra']);
                 try {
                     $tipoBoletim = $this->mapTipoBoletim($value['tipoBoletim']);
 
-                    $date = Carbon::parse($value["dataHoraCotacao"], "America/Sao_Paulo")->format("Y-m-d H:i:s ");
+                    $date = Carbon::parse($value["dataHoraCotacao"])->format("Y-m-d H:i:s");
 
                     $cotacao = Cotacao::where("dataHora", $date)
                         ->where("descricao", $tipoBoletim)
@@ -91,6 +93,7 @@ class AtualizaCotacao extends Command
             }
         }
     }
+
     /**
      * Map API tipoBoletim value to CotacaoTipo enum
      *
