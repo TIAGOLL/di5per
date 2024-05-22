@@ -2,18 +2,20 @@
 
 namespace App\Enum;
 
+
 enum CotacaoTipo: string
 {
-    case Abertura = 'abertura';
-    case Intermediario = 'intermediario';
-    case Fechamento = 'fechamento';
+    case Abertura = 'Abertura';
+    case Intermediario = 'Intermediário';
+    case Fechamento = 'Fechamento';
 
     public function getDes(): string
     {
         return match ($this) {
             CotacaoTipo::Abertura => "Abertura",
-            CotacaoTipo::Intermediario => "intermediario",
-            CotacaoTipo::Fechamento => "fechamento"
+            CotacaoTipo::Intermediario => "Intermediário",
+            CotacaoTipo::Fechamento => "Fechamento"
         };
     }
+
 }

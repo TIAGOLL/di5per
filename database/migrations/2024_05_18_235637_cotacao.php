@@ -15,9 +15,11 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->decimal('valor', 12, 6);
             $table->dateTime('dataHora');
-            $table->string('descicao', 100);
+            $table->string('descricao', 100);
             $table->timestamps();
             $table->foreignId('moeda_id');
+
+            $table->unique(['moeda_id', 'dataHora','descricao']);
         });
     }
 

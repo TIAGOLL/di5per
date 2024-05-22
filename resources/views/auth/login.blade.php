@@ -12,7 +12,7 @@
     <div class="bg-[#56be7c] rounded-lg shadow-lg flex w-[50rem] h-screen justify-center items-start pt-20">
         <div class="justify-start flex flex-col items-center w-full">
             <img src="{{ asset('img/LogoDefinitiva.png') }}" alt="Logo Money Track" class="rounded-lg w-72 h-72">
-            <form method="POST" action="{{ route('login') }}" class="w-[20rem] h-[1rem]">
+            <form method="POST" action="{{ route('auth') }}" class="w-[20rem] h-[1rem]">
                 @csrf
                 <div class="mb-4">
                     <label for="email" class="block text-sm font-medium text-gray-700 font-semibold">E-mail</label>
