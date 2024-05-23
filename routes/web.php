@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CotacaoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
@@ -18,23 +19,14 @@ Route::group(["middleware" => "web"], function () {
 
 });
 
-if (Auth::check()) {
-    Route::get('/dahboard', [DashboardController::class, 'index'])->name('dahboard');
-}
+Route::prefix("api")->group(function () {
 
-Route::prefix("cotacao")->group(function() {
-
-//    Route::get("get", [ContacaoController::class, "get"]);
+    Route::get("getCotacoes", [CotacaoController::class, "get"]);
 });
 
-// localhost/di/cotacao/get?moeda_id=1&inicio=...&fim=...
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dahboard');
 
-/*
+/*Route::prefix("cotacao")->group(function() {
 
-select("datahora", "valor")
-
-{
-    "valor": 12,
-    "datahora": "..."
-}
-*/
+//    Route::get("get", [ContacaoController::class, "get"]);
+});*/

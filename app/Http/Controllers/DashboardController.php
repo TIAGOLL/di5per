@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Enum\CotacaoTipo;
 use Illuminate\Http\Request;
-use App\Models\API;
+use App\Models\Cotacao;
+use App\Models\Moeda;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
-        $moeda = @$_GET['moeda'];
-        
-        return ($moeda != null)? API::Atualizar($_GET['moeda']) : 'dashboard';
+        $moedas = Moeda::all();
+
+        return view("dashboard", compact("moedas"));
     }
 }
