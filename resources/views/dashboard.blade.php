@@ -63,7 +63,7 @@ $moedas = [
                 <img src="{{ asset('img/configIcon.png') }}" alt="Logo Money Track" class="rounded-lg w-10 h-10 mr-6 hover:animate-spin">
             </button>
         </div>
-        <div class="w-full flex flex-row mx-10 gap-5 justify-center">
+        <div class="w-full flex flex-wrap mx-10 gap-5 justify-center">
             <div class="flex flex-col bg-[#56BE7C] w-[18rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                 <h2 class="font-semibold text-zinc-700 text-lg">Saldo atual:</h2>
                 <h3 class="font-bold text-zinc-700 text-2xl">R$ 10.589,00</h3>
@@ -89,25 +89,15 @@ $moedas = [
                 </div>
             </div>
         </div>
+        <div class="w-full flex flex-row mx-10 gap-5 justify-center">
+            <div style="width: 800px;">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
     </div>
 </body>
-<!--
-    <button id="get_cotacao">Buscar</button>
 
-    <div>
-        <table id="tbl_cotacoes">
-            <head>
-                <tr>
-                    <th>Data Hora</th>
-                    <th>Valor</th>
-                </tr>
-            </head>
-
-            <body>
-            </body>
-        </table>
-    </div> -->
-<script>
+<script  type="module">
     $("#get_cotacao").click(async function() {
         const moeda_id = $("#moeda_id").find(":selected").val();
 
@@ -138,5 +128,31 @@ $moedas = [
 
         }
     }
+
+    // graficos
+    const ctx = document.getElementById('myChart');
+
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+
+
 </script>
 @endsection
