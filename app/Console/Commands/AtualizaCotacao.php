@@ -38,6 +38,7 @@ class AtualizaCotacao extends Command
         $dataFinal = date("m-d-Y");
         $moedas = Moeda::All();
 
+        info($moedas);
         if (is_null($moedas)) {
             error("Banco sem dados");
             return;
