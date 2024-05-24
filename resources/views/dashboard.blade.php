@@ -7,7 +7,7 @@ $moedas = [
     (object) [
         'id' => 1,
         'descricao' => 'Dólar',
-        'simbolo' => 'US$'
+        'simbolo' => '$'
     ],
     (object) [
         'id' => 2,
@@ -28,8 +28,8 @@ $moedas = [
 
 ?>
 
-<body class="h-screen w-screen bg-[#DDDBDA] flex flex-row">
-    <div class="w-[22rem] h-full bg-[#56BE7C] flex flex-col p-10">
+<body class="h-auto w-auto bg-[#DDDBDA] flex flex-row">
+    <div class="w-[22rem] h-auto bg-[#56BE7C] flex flex-col p-10">
         <div class="w-full flex flex-col justify-center items-center">
             {imagem do usuario ou:}<img src="{{ asset('img/noUser.png') }}" alt="Logo Money Track" class="rounded-full w-32 h-32">
         </div>
@@ -64,28 +64,28 @@ $moedas = [
             </button>
         </div>
         <div class="w-full flex flex-wrap mx-10 gap-5 justify-center">
-            <div class="flex flex-col bg-[#56BE7C] w-[18rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
+            <div class="flex flex-col bg-[#56BE7C] w-[13rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                 <h2 class="font-semibold text-zinc-700 text-lg">Saldo atual:</h2>
                 <h3 class="font-bold text-zinc-700 text-2xl">R$ 10.589,00</h3>
             </div>
-            <div class="flex flex-col bg-white w-[18rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
+            <div class="flex flex-col bg-white w-[13rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                 <h2 class="font-semibold text-zinc-700 text-lg">Convertidos em {moeda selecionada}:</h2>
                 <h3 class="font-bold text-zinc-700 text-2xl">$ 2.058,27</h3>
             </div>
-            <div class="flex flex-col bg-white w-[18rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
+            <div class="flex flex-col bg-white w-[13rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                 <h2 class="font-semibold text-zinc-700 text-lg">Adicionar saldo:</h2>
                 <h3 class="font-bold text-zinc-700 text-2xl">R$ 0,00</h3>
                 <div class="w-full justify-between items-center flex pb-10">
-                    <button class="bg-[#FF443A] text-white font-semibold rounded-md p-2 hover:bg-red-600 h-8">Cancelar</button>
-                    <button class="bg-[#38A263] text-white font-semibold rounded-md p-2 hover:bg-green-700 h-8">Confirmar</button>
+                    <button class="bg-[#FF443A] text-white font-semibold rounded-md px-1 hover:bg-red-600 h-8">Cancelar</button>
+                    <button class="bg-[#38A263] text-white font-semibold rounded-md px-1 hover:bg-green-700 h-8">Confirmar</button>
                 </div>
             </div>
-            <div class="flex flex-col bg-white w-[18rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
+            <div class="flex flex-col bg-white w-[13rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                 <h2 class="font-semibold text-zinc-700 text-lg">Retirar saldo:</h2>
                 <h3 class="font-bold text-zinc-700 text-2xl">R$ 0,00</h3>
                 <div class="w-full justify-between items-center flex pb-10">
-                    <button class="bg-[#FF443A] text-white font-semibold rounded-md p-2 hover:bg-red-600 h-8">Cancelar</button>
-                    <button class="bg-[#38A263] text-white font-semibold rounded-md p-2 hover:bg-green-700 h-8">Confirmar</button>
+                    <button class="bg-[#FF443A] text-white font-semibold rounded-md px-1 hover:bg-red-600 h-8">Cancelar</button>
+                    <button class="bg-[#38A263] text-white font-semibold rounded-md px-1 hover:bg-green-700 h-8">Confirmar</button>
                 </div>
             </div>
         </div>
