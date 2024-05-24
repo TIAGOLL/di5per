@@ -137,11 +137,10 @@ $moedas = [
     const iene = await getCotacoes(3);
     const libraEsterlina = await getCotacoes(4);
 
-    console.log(dollar)
     new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+            labels: dollar.data.map((item) => item.datahora),
             datasets: [{
                     label: 'Dollar',
                     data: dollar.data.map((item) => item.valor),
