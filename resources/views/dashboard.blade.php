@@ -97,7 +97,7 @@ $moedas = [
     </div>
 </body>
 
-<script  type="module">
+<script type="module">
     $("#get_cotacao").click(async function() {
         const moeda_id = $("#moeda_id").find(":selected").val();
 
@@ -132,15 +132,37 @@ $moedas = [
     // graficos
     const ctx = document.getElementById('myChart');
 
+    const dollar = await getCotacoes(2);
+    const euro = await getCotacoes(1);
+    const iene = await getCotacoes(3);
+    const libraEsterlina = await getCotacoes(4);
+
+    console.log(dollar)
     new Chart(ctx, {
-        type: 'bar',
+        type: 'line',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
             datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3],
-                borderWidth: 1
-            }]
+                    label: 'Dollar',
+                    data: dollar.data.map((item) => item.valor),
+                    borderWidth: 3
+                },
+                {
+                    label: 'Euro',
+                    data: euro.data.map((item) => item.valor),
+                    borderWidth: 3
+                },
+                {
+                    label: 'Libra Esterlina',
+                    data: libraEsterlina.data.map((item) => item.valor),
+                    borderWidth: 3
+                },
+                {
+                    label: 'Iene',
+                    data: iene.data.map((item) => item.valor),
+                    borderWidth: 3
+                },
+            ]
         },
         options: {
             scales: {
@@ -150,9 +172,5 @@ $moedas = [
             }
         }
     });
-</script>
-
-
-
 </script>
 @endsection
