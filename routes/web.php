@@ -4,6 +4,7 @@ use App\Http\Controllers\CotacaoController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
+use App\Http\Middleware\CheckIfLoggedIn;
 use Illuminate\Support\Facades\Auth;
 
 /*Route::get('/', function () {
@@ -13,18 +14,21 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('auth');
 
-Route::group(["middleware" => "web"], function () {
-
-    // TOdas as rotas aqui precisam de autenticação
-
+Route::middleware([CheckIfLoggedIn::class], function () {
 });
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dahboard');
 
 Route::prefix("api")->group(function () {
 
-    Route::get("getCotacoes", [CotacaoController::class, "get"]);
+    Route::prefix("cotacao")->group(function () {
+
+        Route::get("getByMoeda", [CotacaoController::class, "get"])->name('cotacao.getByMoeda');
+
+        Route::get("getAll", [CotacaoController::class, "getAll"])->name('cotacao.getall');
+    });
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dahboard');
+
 
 /*Route::prefix("cotacao")->group(function() {
 

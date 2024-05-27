@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
     public function index(Request $request)
     {
-        $moedas = Moeda::all();
+        $moedas = Moeda::orderBy("descricao")->get();
 
         return view("dashboard", compact("moedas"));
     }
