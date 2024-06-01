@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'authenticate'])->name('auth');
 
-Route::middleware([CheckIfLoggedIn::class], function () {
+
+Route::middleware([CheckIfLoggedIn::class])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dahboard');
+    Route::post('/adicionar', [DashboardController::class, 'adicionar'])->name('adicionarSaldo');
+    Route::post('/retirar', [DashboardController::class, 'retirar'])->name('retirarSaldo');
 });
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dahboard');
+
+
 
 Route::prefix("api")->group(function () {
 

@@ -20,7 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'cpf'
+        'cpf',
+        'total_conta'
     ];
 
     /**

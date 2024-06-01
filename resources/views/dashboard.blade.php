@@ -3,10 +3,7 @@
 @section('content')
 
     @php
-        $user = new \stdClass();
-        $user->name = 'Macaco';
-        $user->email = 'macaco@test.com';
-        $user->total_conta = 42069.69;
+        $user = Auth::user();
     @endphp
 
     <body class="h-auto w-auto bg-[#DDDBDA] flex flex-row">
@@ -15,8 +12,7 @@
                 <img src="{{ asset('img/noUser.png') }}" alt="Logo Money Track" class="rounded-full w-32 h-32">
             </div>
             <div class="justify-center items-center flex flex-col">
-                <h1 class="font-bold text-zinc-700 text-2xl p-0 m-2">{{ $user->name }} </h1>
-                <h2 class="font-semibold text-zinc-600 text-md p-0">{{ $user->email }}</h2>
+                <h1 class="font-bold text-zinc-700 text-2xl p-0 m-2">{{ $user['name'] }} </h1>
             </div>
             <div class="flex justify-center items-start ml-8 flex-col gap-10 mt-10">
                 @if (isset($moedas))
@@ -51,7 +47,7 @@
                 <div
                     class="flex flex-col bg-[#56BE7C] w-[13rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                     <h2 class="font-semibold text-zinc-700 text-lg">Saldo atual:</h2>
-                    <h3 class="font-bold text-zinc-700 text-2xl">R$ {{ number_format($user->total_conta, 2, ',', '.') }}
+                    <h3 class="font-bold text-zinc-700 text-2xl">R$ {{ number_format($user['total_conta'], 2, ',', '.') }}
                     </h3>
                 </div>
                 <div
@@ -62,24 +58,29 @@
                 <div
                     class="flex flex-col bg-white w-[13rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                     <h2 class="font-semibold text-zinc-700 text-lg">Adicionar saldo:</h2>
-                    <h3 class="font-bold text-zinc-700 text-2xl">R$ 0,00</h3>
-                    <div class="w-full justify-between items-center flex pb-10">
-                        <button
-                            class="bg-[#FF443A] text-white font-semibold rounded-md px-1 hover:bg-red-600 h-8">Cancelar</button>
-                        <button
-                            class="bg-[#38A263] text-white font-semibold rounded-md px-1 hover:bg-green-700 h-8">Confirmar</button>
-                    </div>
+                    <form action="{{ route('adicionarSaldo') }}" method="POST">
+                        @csrf
+                        <input type="number" id="valor" name="quantidade" min="0" step="0.01"
+                            placeholder="0.00" required />
+                        <div class="w-full justify-between items-center flex pb-10">
+                            <button type="submit"
+                                class="bg-[#38A263] text-white font-semibold rounded-md px-1 hover:bg-green-700 h-8">Confirmar</button>
+                        </div>
+                    </form>
+
                 </div>
                 <div
                     class="flex flex-col bg-white w-[13rem] h-[10rem] p-4 gap-5 rounded-md shadow-md border-2 border-white">
                     <h2 class="font-semibold text-zinc-700 text-lg">Retirar saldo:</h2>
-                    <h3 class="font-bold text-zinc-700 text-2xl">R$ 0,00</h3>
-                    <div class="w-full justify-between items-center flex pb-10">
-                        <button
-                            class="bg-[#FF443A] text-white font-semibold rounded-md px-1 hover:bg-red-600 h-8">Cancelar</button>
-                        <button
-                            class="bg-[#38A263] text-white font-semibold rounded-md px-1 hover:bg-green-700 h-8">Confirmar</button>
-                    </div>
+                    <form action="{{ route('retirarSaldo') }}" method="POST">
+                        @csrf
+                        <input type="number" id="valor" name="quantidade" min="0" step="0.01"
+                            placeholder="0.00" required />
+                        <div class="w-full justify-between items-center flex pb-10">
+                            <button type="submit"
+                                class="bg-[#38A263] text-white font-semibold rounded-md px-1 hover:bg-green-700 h-8">Confirmar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <div class="w-full flex flex-row mx-10 gap-5 justify-center">
@@ -97,7 +98,7 @@
 
 
         $(document).ready(function() {
-
+            calcularMoeda(2);
         });
         /*
             TUDO NO BACK:
@@ -112,9 +113,15 @@
                 - Renderiza o valor
         */
 
+
         $(".moedas").on("click", async function() {
-            let $convertido = $("#convertido");
             let moeda_id = $(this).val();
+            calcularMoeda(moeda_id);
+        });
+
+
+        async function calcularMoeda(moeda_id) {
+            let $convertido = $("#convertido");
             let moedaSelecionada = moedas.find(moeda => moeda.id == moeda_id);
             let cotacao = await getCotacaoByMoeda(moeda_id);
 
@@ -124,10 +131,9 @@
             let calcFormatado = calc.toFixed(2);
 
             let simbolo = moedaSelecionada.simbolo;
-            // Deixa o valor legivel para humano
 
             $convertido.html(simbolo + ' ' + calcFormatado);
-        });
+        }
 
         async function getCotacaoByMoeda(moeda_id) {
             try {
