@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="w-full items-center justify-center flex">
-                    <button type="submit"
+                    <button type="submit" id="login"
                         class="w-[13rem] py-2 px-4 border border-transparent rounded-3xl shadow-md text-sm font-medium text-white bg-[#3E3A4E] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 justify-center items-center">Entrar</button>
                 </div>
                 <div class="flex justify-between">
@@ -42,7 +42,7 @@
                         <a href="#" class="text-[#3E3A4E] hover:text-indigo-500">Esqueci minha senha</a>
                     </div>
                     <div class="mt-4 text-sm">
-                        <a href="" class="text-[#3E3A4E] hover:text-indigo-500">Criar uma conta</a>
+                        <a href="#" class="text-[#3E3A4E] hover:text-indigo-500">Criar uma conta</a>
                     </div>
                 </div>
             </form>

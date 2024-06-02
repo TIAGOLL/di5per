@@ -21,7 +21,7 @@ Route::middleware([CheckIfLoggedIn::class])->group(function () {
     Route::post('/retirar', [DashboardController::class, 'retirar'])->name('retirarSaldo');
 });
 
-
+Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 Route::prefix("api")->group(function () {
 

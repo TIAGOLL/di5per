@@ -25,11 +25,11 @@
                 @endif
             </div>
             <div class="flex h-full justify-end flex-col items-center">
-                <button
+                <a href="{{route('logout')}}"
                     class="font-bold text-xl text-zinc-800 bg-red-400 rounded-lg px-6 py-2 flex flex-row !justify-between items-center w-[14rem] hover:bg-red-500">
                     Desconectar
                     <img src="{{ asset('img/exit.png') }}" alt="Logo Money Track" class="w-6 h-6">
-                </button>
+                </a>
                 <h3 class="font-semibold text-zinc-700 mt-4">BOBBY JONES SOLUTIONS®</h3>
             </div>
         </div>

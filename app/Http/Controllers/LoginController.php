@@ -29,4 +29,11 @@ class LoginController extends Controller
             'email' => 'email ou senha incoretos',
         ])->onlyInput('email');
    }
+
+   public function logout()
+   {
+        Auth::logout();
+
+        return redirect(route('login'));
+   }
 }
