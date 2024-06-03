@@ -9,7 +9,7 @@
             "APP_ENV": "production",
             "NODE_ENV": "production"
         },
-        "buildCommand": "npm run build && php artisan vite:build"
+        "build": "npm run build && php artisan vite:build"
     },
     "routes": [
         {
