@@ -4,13 +4,6 @@
     "functions": {
         "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
-    "build": {
-        "env": {
-            "APP_ENV": "production",
-            "NODE_ENV": "production"
-        },
-        "build": "npm run build && php artisan vite:build"
-    },
     "routes": [
         {
             "src": "/(.*)",
